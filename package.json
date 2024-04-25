@@ -1,6 +1,6 @@
 {
   "name": "@ezee969/story-book-rollup",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A rollup storybook deploy test",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -89,6 +89,8 @@
     "typescript": "^5.2.2"
   },
   "peerDependencies": {
-    "react": "^18.2.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@emotion/react": "^11.11.4"
   }
 }
