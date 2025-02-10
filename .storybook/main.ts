@@ -31,8 +31,7 @@ const config: StorybookConfig = {
     '@storybook/addon-onboarding',
     '@storybook/addon-interactions',
     '@storybook/addon-themes',
-    '@storybook/addon-webpack5-compiler-babel',
-    '@chromatic-com/storybook'
+    '@storybook/addon-webpack5-compiler-babel'
   ],
   framework: {
     name: '@storybook/react-webpack5',
