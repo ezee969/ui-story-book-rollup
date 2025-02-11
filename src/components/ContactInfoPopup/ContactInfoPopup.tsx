@@ -22,10 +22,11 @@ const PopupContainer = styled(Box)({
   boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
   borderRadius: '8px',
   width: 300,
-  maxHeight: '65vh',
+  maxHeight: '600px',
   overflowY: 'auto',
   transition: 'opacity 0.3s ease, transform 0.3s ease',
   padding: '8px',
+  zIndex: 1300,
 
   '&::-webkit-scrollbar': {
     width: 8,
@@ -119,7 +120,12 @@ const ContactInfoPopup = ({
   ];
 
   return (
-    <Popper open={open} anchorEl={anchorEl} placement="bottom-start">
+    <Popper
+      sx={{ zIndex: 1300 }}
+      open={open}
+      anchorEl={anchorEl}
+      placement="bottom-start"
+    >
       <ClickAwayListener onClickAway={onClose}>
         <PopupContainer>
           <CardContent>
