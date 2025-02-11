@@ -20,7 +20,7 @@ export default [
         sourcemap: true,
       },
     ],
-    external: ['react', 'react-dom', '@emotion/react'], // Add this line
+    external: ['react', 'react-dom', '@emotion/react', '@mui/material'],
     plugins: [
       resolve(),
       commonjs(),
