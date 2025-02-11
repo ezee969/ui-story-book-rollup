@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import ContactInfoPopup from './ContactInfoPopup';
-import React from 'react';
 
 const meta = {
   component: ContactInfoPopup,
@@ -16,6 +15,8 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-   
+    open: true,
+    anchorEl: null,
+    onClose: () => {},
   },
 };

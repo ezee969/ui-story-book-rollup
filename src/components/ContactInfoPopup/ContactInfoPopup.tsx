@@ -1,6 +1,13 @@
 import { IContact } from '@trii/types/dist/Contacts';
-// Components/ui
-import { CardContent, Typography, Divider, Box, Chip, styled } from '@mui/material';
+import {
+  CardContent,
+  Typography,
+  Box,
+  Chip,
+  styled,
+  Popper,
+  ClickAwayListener,
+} from '@mui/material';
 import {
   PhoneEnabled,
   WhatsApp,
@@ -11,18 +18,14 @@ import {
 import { ContactMethod, Header, Properties } from './components';
 
 const PopupContainer = styled(Box)({
-  position: 'fixed',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  zIndex: 1300,
-  maxHeight: '65vh',
-  overflowY: 'auto',
   backgroundColor: 'white',
   boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
   borderRadius: '8px',
   width: 300,
+  maxHeight: '65vh',
+  overflowY: 'auto',
   transition: 'opacity 0.3s ease, transform 0.3s ease',
+  padding: '8px',
 
   '&::-webkit-scrollbar': {
     width: 8,
@@ -58,7 +61,9 @@ const StyledChip = styled(Chip)({
 });
 
 export interface ContactInfoPopupProps {
-  open?: boolean;
+  open: boolean;
+  anchorEl: HTMLElement | null;
+  onClose: () => void;
   t?: (key: string) => string;
   contactData?: IContact;
   avatarImgUrl?: string;
@@ -68,7 +73,9 @@ export interface ContactInfoPopupProps {
 }
 
 const ContactInfoPopup = ({
-  open = false,
+  open,
+  anchorEl,
+  onClose,
   contactData,
   avatarImgUrl,
   handleNavigateToContacts = () => {},
@@ -81,12 +88,6 @@ const ContactInfoPopup = ({
       view: 'Ver',
     }[key] || key),
 }: ContactInfoPopupProps) => {
-  const popupStyles = {
-    visibility: open ? 'visible' : 'hidden',
-    opacity: open ? 1 : 0,
-    transform: open ? 'translate(-50%, -50%)' : 'translate(-50%, -40%)',
-  };
-
   const contactMethods = [
     {
       icon: <PhoneEnabled fontSize="small" />,
@@ -118,49 +119,61 @@ const ContactInfoPopup = ({
   ];
 
   return (
-    <PopupContainer sx={popupStyles}>
-      <CardContent>
-        <Header
-          contactId={contactData?.id}
-          imgUrl={avatarImgUrl}
-          name={contactData?.name}
-          t={t}
-          handleNavigateToContacts={handleNavigateToContacts}
-        />
+    <Popper open={open} anchorEl={anchorEl} placement="bottom-start">
+      <ClickAwayListener onClickAway={onClose}>
+        <PopupContainer>
+          <CardContent>
+            <Header
+              contactId={contactData?.id}
+              imgUrl={avatarImgUrl}
+              name={contactData?.name}
+              t={t}
+              handleNavigateToContacts={handleNavigateToContacts}
+            />
 
-        {/* Labels */}
-        <SectionTitle gutterBottom mt={2} variant="subtitle1">
-          {t('labels')}
-        </SectionTitle>
-        <TagContainer>
-          {contactData?.tags?.map((tag) => (
-            <StyledChip key={tag.id} label={tag.name} color="primary" size="small" />
-          ))}
-        </TagContainer>
+            {/* Labels */}
+            <SectionTitle gutterBottom mt={2} variant="subtitle1">
+              {t('labels')}
+            </SectionTitle>
+            <TagContainer>
+              {contactData?.tags?.map((tag) => (
+                <StyledChip
+                  key={tag.id}
+                  label={tag.name}
+                  color="primary"
+                  size="small"
+                />
+              ))}
+            </TagContainer>
 
-        {/* Business */}
-        <SectionTitle gutterBottom mt={2} variant="subtitle1">
-          {t('business')}
-        </SectionTitle>
-        <Typography variant="body2" color="text.secondary">
-          {contactData?.businessName}
-        </Typography>
+            {/* Business */}
+            <SectionTitle gutterBottom mt={2} variant="subtitle1">
+              {t('business')}
+            </SectionTitle>
+            <Typography variant="body2" color="text.secondary">
+              {contactData?.businessName}
+            </Typography>
 
-        {/* Contact Methods */}
-        {contactMethods.map((method, index) => (
-          <ContactMethod
-            key={index}
-            icon={method.icon}
-            title={method.title}
-            contactList={method.contactList}
-            showTitle={method.showTitle}
-          />
-        ))}
+            {/* Contact Methods */}
+            {contactMethods.map((method, index) => (
+              <ContactMethod
+                key={index}
+                icon={method.icon}
+                title={method.title}
+                contactList={method.contactList}
+                showTitle={method.showTitle}
+              />
+            ))}
 
-        {/* Properties */}
-        <Properties properties={contactData?.properties} title={t('properties')} />
-      </CardContent>
-    </PopupContainer>
+            {/* Properties */}
+            <Properties
+              properties={contactData?.properties}
+              title={t('properties')}
+            />
+          </CardContent>
+        </PopupContainer>
+      </ClickAwayListener>
+    </Popper>
   );
 };
 
