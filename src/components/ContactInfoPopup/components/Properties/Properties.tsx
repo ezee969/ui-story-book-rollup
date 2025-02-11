@@ -20,11 +20,8 @@ const Container = styled(Box)({
 });
 
 const SectionTitle = styled(Typography)(({ theme }) => ({
-  fontWeight: 600,
-  color: theme.palette.text.disabled,
   borderBottom: `1px solid ${theme.palette.divider}`,
   width: '100%',
-  paddingBottom: 4,
 }));
 
 const PropertyItem = styled(Box)({
@@ -98,7 +95,9 @@ const Properties = ({ properties, title }: Props) => {
 
   return (
     <Container>
-      <SectionTitle variant="subtitle1">{title}</SectionTitle>
+      <SectionTitle fontWeight="bold" gutterBottom mt={2} variant="subtitle1">
+        {title}
+      </SectionTitle>
       {properties?.map(
         (property, i) =>
           property.value.length > 0 && (
