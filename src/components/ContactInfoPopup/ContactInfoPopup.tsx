@@ -10,7 +10,7 @@ import {
 } from '@mui/icons-material';
 import { ContactMethod, Header, Properties } from './components';
 
-const PopupContainer = styled(Box)(({ theme }) => ({
+const PopupContainer = styled(Box)({
   position: 'fixed',
   top: '50%',
   left: '50%',
@@ -19,8 +19,8 @@ const PopupContainer = styled(Box)(({ theme }) => ({
   maxHeight: '65vh',
   overflowY: 'auto',
   backgroundColor: 'white',
-  boxShadow: theme.shadows[4],
-  borderRadius: theme.shape.borderRadius,
+  boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
+  borderRadius: '8px',
   width: 300,
   transition: 'opacity 0.3s ease, transform 0.3s ease',
 
@@ -28,23 +28,24 @@ const PopupContainer = styled(Box)(({ theme }) => ({
     width: 8,
   },
   '&::-webkit-scrollbar-track': {
-    background: theme.palette.grey[200],
+    background: '#E0E0E0',
     borderRadius: 10,
   },
   '&::-webkit-scrollbar-thumb': {
-    background: theme.palette.grey[500],
+    background: '#9E9E9E',
     borderRadius: 10,
     transition: 'background 0.3s',
   },
   '&::-webkit-scrollbar-thumb:hover': {
-    background: theme.palette.grey[700],
+    background: '#616161',
   },
-}));
+});
 
 const SectionTitle = styled(Typography)({
   fontWeight: 'bold',
   marginBottom: '8px',
   marginTop: '16px',
+  borderBottom: `1px solid lightgray`,
 });
 
 const TagContainer = styled(Box)({
@@ -128,20 +129,22 @@ const ContactInfoPopup = ({
         />
 
         {/* Labels */}
-        <SectionTitle variant="subtitle1">{t('labels')}</SectionTitle>
+        <SectionTitle gutterBottom mt={2} variant="subtitle1">
+          {t('labels')}
+        </SectionTitle>
         <TagContainer>
           {contactData?.tags?.map((tag) => (
             <StyledChip key={tag.id} label={tag.name} color="primary" size="small" />
           ))}
         </TagContainer>
-        <Divider />
 
         {/* Business */}
-        <SectionTitle variant="subtitle1">{t('business')}</SectionTitle>
+        <SectionTitle gutterBottom mt={2} variant="subtitle1">
+          {t('business')}
+        </SectionTitle>
         <Typography variant="body2" color="text.secondary">
           {contactData?.businessName}
         </Typography>
-        <Divider />
 
         {/* Contact Methods */}
         {contactMethods.map((method, index) => (

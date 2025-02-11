@@ -19,25 +19,25 @@ const Container = styled(Box)({
   gap: 8,
 });
 
-const TitleBox = styled(Box)(({ theme }) => ({
+const TitleBox = styled(Box)({
   width: '100%',
-  borderBottom: `1px solid ${theme.palette.divider}`,
-}));
+  borderBottom: `1px solid lightgray`,
+});
 
-const StyledBox = styled(Box)(({ theme }) => ({
+const StyledBox = styled(Box)({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
   width: '100%',
-  padding: theme.spacing(1),
+  padding: 1,
   minHeight: '50px',
   position: 'relative',
-}));
+});
 
 const IconBox = styled(Box)(({ theme }) => ({
   marginTop: '-3px',
   padding: 0,
-  color: theme.palette.secondary.main,
+  color: theme.palette.primary.main,
 }));
 
 const InfoContainer = styled(Box)({

@@ -1,6 +1,6 @@
 {
   "name": "@ezee969/story-book-rollup",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "Trii components package",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",

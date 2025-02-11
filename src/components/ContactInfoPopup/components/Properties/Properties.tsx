@@ -19,10 +19,10 @@ const Container = styled(Box)({
   gap: 8,
 });
 
-const SectionTitle = styled(Typography)(({ theme }) => ({
-  borderBottom: `1px solid ${theme.palette.divider}`,
+const SectionTitle = styled(Typography)({
+  borderBottom: `1px solid lightgray`,
   width: '100%',
-}));
+});
 
 const PropertyItem = styled(Box)({
   display: 'flex',
@@ -31,14 +31,12 @@ const PropertyItem = styled(Box)({
   width: '100%',
 });
 
-const PropertyText = styled(Typography)(({ theme }) => ({
-  fontWeight: 600,
+const PropertyText = styled(Typography)({
   fontSize: 14,
-  color: theme.palette.text.disabled,
-}));
+});
 
 const PropertyIcon = styled(Handyman)(({ theme }) => ({
-  color: theme.palette.secondary.main,
+  color: theme.palette.primary.main,
   fontSize: 16,
 }));
 const Properties = ({ properties, title }: Props) => {

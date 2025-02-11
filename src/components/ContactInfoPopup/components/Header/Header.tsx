@@ -10,15 +10,9 @@ const ButtonsContainer = styled(Box)({
   gap: 4,
 });
 
-const SmallButton = styled(Button)(({ theme }) => ({
-  color: theme.palette.primary.main,
-  borderColor: theme.palette.primary.main,
-}));
-
-const SmallIconButton = styled(IconButton)(({ theme }) => ({
-  color: theme.palette.primary.main,
+const SmallIconButton = styled(IconButton)({
   padding: 4,
-}));
+});
 
 const HeaderContainer = styled(Box)({
   display: 'flex',
@@ -69,15 +63,16 @@ const Header = ({
   return (
     <HeaderContainer>
       <ButtonsContainer>
-        <SmallButton
+        <Button
           variant="outlined"
           size="small"
           startIcon={<Visibility />}
           onClick={handleNavigateToContacts}
+          color="info"
         >
           {t('view')}
-        </SmallButton>
-        <SmallIconButton size="small" onClick={handleOpenInNewTab}>
+        </Button>
+        <SmallIconButton color="info" size="small" onClick={handleOpenInNewTab}>
           <OpenInNew fontSize="small" />
         </SmallIconButton>
       </ButtonsContainer>
