@@ -1,7 +1,6 @@
 // Components/ui
 import { OpenInNew, Visibility } from '@mui/icons-material';
 import { Avatar, Box, Button, IconButton, styled, Typography } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 
 const ButtonsContainer = styled(Box)({
   position: 'absolute',
@@ -47,20 +46,18 @@ type HeaderProps = {
   name: string | undefined;
   contactId: string | undefined;
   t: (key: string) => string;
+  handleNavigateToContacts: (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => void | undefined;
 };
 
-const Header = ({ imgUrl, name, contactId, t = (key) => key }: HeaderProps) => {
-  const navigate = useNavigate();
-
-  const handleNavigateToContacts = (event: React.MouseEvent) => {
-    event.preventDefault();
-    event.stopPropagation();
-
-    const url = `/a/contacts/contacts/${contactId}`;
-
-    navigate(url);
-  };
-
+const Header = ({
+  handleNavigateToContacts,
+  imgUrl,
+  name,
+  contactId,
+  t = (key) => key,
+}: HeaderProps) => {
   const handleOpenInNewTab = (event: React.MouseEvent) => {
     event.preventDefault();
     event.stopPropagation();

@@ -57,14 +57,20 @@ const StyledChip = styled(Chip)({
 });
 
 export interface ContactInfoPopupProps {
-  open: boolean;
+  open?: boolean;
   t?: (key: string) => string;
   contactData?: IContact;
+  avatarImgUrl?: string;
+  handleNavigateToContacts?: (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => void;
 }
 
 const ContactInfoPopup = ({
-  open,
+  open = false,
   contactData,
+  avatarImgUrl,
+  handleNavigateToContacts = () => {},
   t = (key: string): string =>
     ({
       labels: 'Etiquetas',
@@ -115,9 +121,10 @@ const ContactInfoPopup = ({
       <CardContent>
         <Header
           contactId={contactData?.id}
-          imgUrl={contactData?.imageUrl}
+          imgUrl={avatarImgUrl}
           name={contactData?.name}
           t={t}
+          handleNavigateToContacts={handleNavigateToContacts}
         />
 
         {/* Labels */}
