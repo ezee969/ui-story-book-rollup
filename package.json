@@ -1,6 +1,6 @@
 {
   "name": "@ezee969/story-book-rollup",
-  "version": "1.2.8",
+  "version": "1.2.9",
   "description": "Trii components package",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -89,8 +89,8 @@
   },
   "peerDependencies": {
     "@emotion/react": "^11.11.4",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": ">=17.0.2 <19.0.0",
+    "react-dom": ">=17.0.2 <19.0.0"
   },
   "dependencies": {
     "@trii/types": "^2.10.398",
